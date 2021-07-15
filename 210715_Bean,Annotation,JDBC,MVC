@@ -1,0 +1,86 @@
+* Archetype : Maven 프로젝트에서 제공해주는 템플릿(이번시간에는 퀵타입사용)
+* Group Id : 보통은 회사의 도메인 거꾸로 씀, 패키지 만드는 규칙하고 비슷(나중에 Group Id와 Artifact Id가 패키지가 됨)
+* Artifact Id : 실제 프로젝트 이름
+* pom.xml -pom.xml : xml로 표시, jdk사용을 위해 플러그인 설정, 소스 넣기
+
+* DI하려면 공장이 자동으로 만들어줄 객체가 하나 필요함, 그런 객체를 bean이라고 함
+예전에는 Visual 한 컴포넌트를 Bean이라고 불렀지만, 근래 들어서는 일반적인 Java클래스를 Bean클래스라고 보통 말함
+
+* Bean클래스의 3가지 특징
+- 기본 생성자를 가지고 있다.
+- 필드는 private하게 선언한다.
+- getter, setter 메소드를 가진다. getName() setName() 메소드를 name 프로퍼티(property)라고 함 (용어 중요)
+
+--------------------------------------------
+
+*Java config를 이용한 설정을 위한 어노테이션
+- 어노테이션 :  사전적인 의미는 주석이라는 뜻, 자바 어노테이션은 특수한 의미를 부여하는 역할을 함
+
+- @Configuration
+: 스프링 설정 클래스를 선언하는 어노테이션
+
+- @Bean
+: bean을 정의하는 어노테이션
+
+- @ComponentScan
+: @Controller, @Service, @Repository, @Component 어노테이션이 붙은 클래스를 찾아 컨테이너에 등록
+
+- @Component
+: 컴포넌트 스캔의 대상이 되는 애노테이션 중 하나로써 주로 유틸, 기타 지원 클래스에 붙이는 어노테이션
+
+- @Autowired
+: 주입 대상이되는 bean을 컨테이너에 찾아 주입하는 어노테이션
+
+--------------------------------------------
+
+* Spring JDBC
+- JDBC 프로그래밍을 보면 반복되는 개발 요소가 있음, 이러한 반복적인 요소는 개발자를 지루하게 만듦
+- 개발하기 지루한 JDBC의 모든 저수준 세부사항을 스프링 프레임워크가 처리해줌
+- 개발자는 필요한 부분만 개발하면 됨
+
+* 개발자가 해야 할 일:
+- 연결 파라미터 정의
+- SQL문 지정
+- 파라미터 선언과 파라미터 값 제공
+- 각 이터레이션에 대한 작업 수행
+
+* 스프링이 해주는 일:
+- 연결 오픈
+- statement 준비와 실행
+- 존재한다면 결과를 반복하는 루프 설정
+- 모든 예외 처리
+- 트랜잭션 제어
+- 연결, statement, resultset 닫기
+
+
+* Spring JDBC 패키지
+- org.springframework.jdbc.core
+: JdbcTemplate 및 관련 Helper 객체 제공
+
+- org.springframework.jdbc.datasource
+: DataSource를 쉽게 접근하기 위한 유틸 클래스, 트랜젝션매니져 및 다양한 DataSource 구현을 제공
+
+-org.springframework.jdbc.object
+: RDBMS 조회, 갱신, 저장등을 안전하고 재사용 가능한 객체 제공
+
+- org.springframework.jdbc.support
+: jdbc.core 및 jdbc.object를 사용하는 JDBC 프레임워크를 지원
+
+* JDBC Template
+- org.springframework.jdbc.core에서 가장 중요한 클래스
+- 리소스 생성, 해지를 처리해서 연결을 닫는 것을 잊어버려 발생하는 문제 등을 피할 수 있도록 함
+- 스테이먼트(Statement)의 생성과 실행을 처리함
+- SQL 조회, 업데이트, 저장 프로시저 호출, ResultSet 반복호출 등을 실행
+- JDBC 예외가 발생할 경우 org.springframework.dao 패키지에 정의되어 있는 일반적인 예외로 변환시킴
+
+
+--------------------------------------------
+
+* MVC
+- Model, View, Controller의 약자
+- 제록스 연구소에서 일을 하던 트뤼그베 린즈커그가 처음으로 소개함, 테스트탑 어플리케이션용으로 고안됨
+- Model : 모델은 뷰가 렌더링하는데 필요한 데이터 ex) 사용자가 요청한 상품 목록, 주문 내역
+- View : 웹 애플리케이션에서 뷰(View)는 실제로 보이는 부분, 모델을 사용해 렌더링함. 뷰는 JSP, JSF, PDF, XML등으로 결과를 표현함
+- Controller : 컨트롤러는 사용자의 액션에 응답하는 컴포넌트, 컨트롤러는 모델을 업데이트, 다른 액션을 수행
+
+
