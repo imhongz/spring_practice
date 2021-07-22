@@ -1,0 +1,24 @@
+* @RestController
+- 스프링4에서 이전 버전의 @Controller와 @ResponseBody를 포함
+- 사용하려면 아래의 MessageConverter가 중요
+
+* MessageConvertor
+- 자바 객체와 HTTP 요청,응답 바디를 변환하는 역할
+- @ResponseBody, @RequestBody
+- @EnableWebMvc 로 인한 기본 설정
+- WebMvcConfigurationSupport 를 사용하여 Spring MVC 구현
+- Default MessageConvertor 를 제공
+- 링크 바로가기 의 addDefaultHttpMessageConverters메소드 항목 참조
+
+* JSON 응답하기
+
+- 컨트롤러의 메소드에서는 JSON으로 변환될 객체를 반환
+- jackson라이브러리를 추가할 경우 객체를 JSON으로 변환하는 MessageConverter가 사용되도록 @EnableWebMvc에서 기본으로 설정됨
+- 라이브러리 추가X -> JSON메시지로 변환할 수 없어 500오류 발생
+- 사용자가 임의의 MessageConverter를 사용하도록 하려면 WebMvcConfigurerAdapter의 configureMessageConverters메소드를 오버라이딩 해야됨
+
+* Web API에서 JSON메시지를 자주 사용하는 이유
+- xml과 다르게 json은 객체형태와 아주 비슷 -> 가독성 좋고, 작성하기도 쉬움, 언어와 플랫폼에 종속 X
+
+* 어제 다 못끝낸 html실습~~~~
+
